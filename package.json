@@ -1,0 +1,11 @@
+{
+  "name": "lmart",
+  "version": "1.0.0",
+  "description": "building the app named as local mart for local ecommerce platform",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mehul Pathak, Mohit Sharma",
+  "license": "ISC"
+}
