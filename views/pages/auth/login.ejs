@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Link to a CSS file (if any) -->
+</head>
+<body>
+    <h1>User Registration</h1>
+
+    <% if (msg) { %>
+        <div style="color: rgb(0, 102, 255);">
+            <p><%= msg %></p>
+        </div>
+    <% } %>
+
+    <form action="/login" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
