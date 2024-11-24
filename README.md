@@ -65,36 +65,3 @@ what we have done till now
 target 1 - Create a landing page (Can copy template choose an effective color theme)
 
 target 2- forget password, seller login and register page with email verification, seller product listing;  
-
-                    +-------------------------+
-                    |     E-Commerce System   |
-                    +-------------------------+
-                             |
-    +---------------------------------------------+
-    |                                             |
-+-----------------+                          +------------------+
-|   Users        |                          |   Sellers        |
-+-----------------+                          +------------------+
-| - Register     |                          | - Dashboard      |
-| - Login        |                          | - Product List   |
-| - Email Verify |                          | - Orders         |
-| - Cart         |                          | - Order Delivery |
-| - Order        |                          | - Product Edit   |
-+-----------------+                          +------------------+
-       |                                           |
-       +------------+                        +----------------+
-                    |                        |                |
-                    |                    +------------+   +--------------+
-                    |                    | Admin Panel|   | Seller Panel |
-                    |                    +------------+   +--------------+
-         +----------------+                |               |                |
-         | Manage Users   |               | Manage Sellers | Order Management |
-         +----------------+               +----------------+   +--------------+
-                    |                       |
-           +------------------+        +---------------+
-           | View Complaints  |        | Super Admin   |
-           +------------------+        +---------------+
-                                         | Manage Users  |
-                                         | Manage Orders |
-                                         | Manage Products|
-                                         +---------------+
