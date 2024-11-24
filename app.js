@@ -1,10 +1,11 @@
 const express = require('express');
 const path = require('path');
-const db = require('./config/db');
-const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
-
+const authRoutes = require('./routes/authRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
+const db = require('./config/db')
 const app = express();
+
 app.set("view engine", "ejs");
 
 // Use static files like CSS, JS, etc.
@@ -15,110 +16,53 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser('mehul'));
 
-// Middleware to prevent logged-in users from accessing login and register pages
-function preventLoggedInUsers(req, res, next) {
-    if (req.cookies.user) {  
+// Middleware function
+function preventLoggedInUsersOnLandingPage(req, res, next) {
+    if (req.cookies.user) {
         return res.redirect('/dashboard');
     }
-    next();
-}
-// Middleware to prevent caching of sensitive pages like the dashboard
-function preventCache(req, res, next) {
-    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.set('Pragma', 'no-cache');
-    res.set('Expires', '0');
-    next();
+    next();  
 }
 
 // Routes
-app.get('/', (req, res) => {
-    res.render("index");
+app.get('/', preventLoggedInUsersOnLandingPage, (req, res) => {
+    res.render("index");  
 });
 
-app.get('/register', preventLoggedInUsers, (req, res) => {
-    res.render("pages/auth/register", { error: null });
-});
+app.use(authRoutes);        
+app.use(dashboardRoutes);
+app.get('/verify-email/:token', async (req, res) => {
+    const { token } = req.params;
+    console.log("Received token:", token);  // Debugging log
 
-app.get("/login", preventLoggedInUsers, (req, res) => {
-    res.render("pages/auth/login", { msg: null });
-});
-
-app.get('/dashboard',preventCache, (req, res) => {
-    const user = req.cookies.user;  
-
-    if (!user) {
-        return res.redirect('/login');  
+    if (!token) {
+        return res.status(400).send('Verification token is missing.');
     }
-
-    res.render('dashboard', { user: JSON.parse(user) });  
-});
-
-app.get('/logout', (req, res) => {
-    res.clearCookie('user');
-    res.redirect('/login');  
-});
-
-// POST - Register route
-app.post('/register', async (req, res) => {
-    const { name, email, number, password } = req.body;
-
-    if (!name || !email || !number || !password) {
-        return res.render("pages/auth/register", { error: "All fields are required!" });
-    }
-
     try {
-        const [rows] = await db.execute('SELECT * FROM users WHERE email = ?', [email]);
+        const [rows] = await db.execute('SELECT * FROM users WHERE verification_token = ?', [token]);
 
-        if (rows.length > 0) {
-            return res.render('pages/auth/register', { error: 'Email is already in use' });
+        if (rows.length === 0) {
+            return res.render('pages/auth/login', { msg: "Invalid or expired token." });
         }
 
-        const hashpwd = await bcrypt.hash(password, 10);
-
-        await db.execute("INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)", [name, email, number, hashpwd]);
-
-       
-        res.render("pages/auth/login", { msg: "Registration successful. Please login." });
+        const user = rows[0];
+        console.log("1");
+        
+        // Check if the token has expired
+        if (user.verification_expiry < Date.now()) {
+            return res.render('pages/auth/login', { msg: "Token has expired. Please register again." });
+        }
+        console.log("2");
+        // Token is valid, mark the user's email as verified
+        await db.execute('UPDATE users SET verify_status = 1 WHERE user_id = ?', [user.user_id]);
+        console.log("3");
+        res.render('pages/auth/login', { msg: "Email verified successfully. Please login." });
     } catch (err) {
         console.error(err);
         res.status(500).send('Server error');
     }
 });
 
-// POST - Login route
-app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-        return res.render('pages/auth/login', { msg: "All fields are required!" });
-    }
-
-    try {
-        const [rows] = await db.execute("SELECT * FROM users WHERE email = ?", [email]);
-
-        if (rows.length === 0) {
-            return res.render("pages/auth/login", { msg: "User not found!" });
-        }
-
-        const user = rows[0];
-        const isPasswordValid = await bcrypt.compare(password, user.password);
-
-        if (!isPasswordValid) {
-            return res.render("pages/auth/login", { msg: "Incorrect password!" });
-        }
-        
-        res.cookie('user', JSON.stringify({ id: user.id, name: user.name, email: user.email }), {
-            httpOnly: true,  
-            secure: false,   
-            maxAge: 24 * 60 * 60 * 1000  
-        });
-
-        res.redirect('/dashboard');
-    } catch (err) {
-        console.log(err);
-        res.status(500).send("Server Error");
-    }
-});
 
 // Start the server
 app.listen(5000, () => {

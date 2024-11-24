@@ -54,6 +54,16 @@
             <h2>User Information</h2>
             <p><strong>Name:</strong> <%= user.name %></p>
             <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Phone:</strong> <%= user.phone %></p>
+            <% user.verify_status = 1 %>
+            <p><strong>Status:</strong> 
+                <%if(!user.verify_status){%>
+                    <a href=""><button style="font-size:10px; padding:10px 20px; background-color: #e04343; color: white; border:none; border-radius: 5px; cursor: pointer;">Please verify yourself</button></a>
+                <%}else{%>
+                    <span style="font-size:12px; padding:10px 20px; background-color: #30d71d; color: white; border:none; border-radius: 5px; cursor: pointer;">Verified</span>
+                <%}%>
+            </p>
+            
         </div>
 
         <a href="/logout">
