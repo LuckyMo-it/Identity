@@ -3,6 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
+const sellerAuthRoutes = require('./routes/sellerAuthRoutes')
 const db = require('./config/db')
 const app = express();
 
@@ -31,9 +32,10 @@ app.get('/', preventLoggedInUsersOnLandingPage, (req, res) => {
 
 app.use(authRoutes);        
 app.use(dashboardRoutes);
+app.use('/seller',sellerAuthRoutes);
 app.get('/verify-email/:token', async (req, res) => {
     const { token } = req.params;
-    console.log("Received token:", token);  // Debugging log
+    console.log("Received token:", token); 
 
     if (!token) {
         return res.status(400).send('Verification token is missing.');

@@ -8,13 +8,13 @@
 <body>
     <h2>Your Social Links</h2>
 <ul>
-    <% if (msg) { 
-        <!-- const socialLinks = JSON.parse(user.social_links); -->
+    <% if (user) { 
+        
     %>
-    <%=msg%>
+    <%=user%>
         
     <% } else { %>
-        <%=msg%>
+        <%=user%>
         <li>No social links provided.</li>
     <% } %>
 </ul>

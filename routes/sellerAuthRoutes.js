@@ -38,9 +38,16 @@ const storage = multer.diskStorage({
 router.get('/register', preventLoggedInUsers, (req, res) => {
     res.render("pages/seller/auth/register", { msg: null });
 });
-router.get('/dashboard', ensureSellerLoggedIn, (req, res) => {
-    const seller = JSON.parse(req.cookies.seller);
-    res.render("pages/seller/dashboard", { msg: "true" });
+router.get('/dashboard', ensureSellerLoggedIn, async (req, res) => {
+    try {
+        const seller = JSON.parse(req.cookies.seller);
+        const [rows] = await db.execute("Select * from sellers where seller_id = ?", [seller.seller_id]);
+        const user = rows[0];
+        res.render("pages/seller/dashboard", { user });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server Error');
+    }
 });
 router.get('/login', (req, res) => {
     res.render('pages/seller/auth/login', { msg: null });
@@ -76,7 +83,7 @@ router.post('/login', async (req, res) => {
         }
 
         // Store seller info in a cookie (or session)
-        res.cookie('seller', JSON.stringify({ seller_id: seller.seller_id, store_name: seller.store_name }), {
+        res.cookie('seller', JSON.stringify({ seller_id: seller.seller_id, store_name: seller.store_name, }), {
             httpOnly: true,
             secure: false,
             maxAge: 24 * 60 * 60 * 1000,
