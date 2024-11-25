@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Registration</title>
+</head>
+<body>
+    <h2>Register as a Seller</h2>
+    <% if (msg) { %>
+        <div style="color: red;"><%= msg %></div>
+    <% } %>
+    <form action="/seller/register" method="POST" enctype="multipart/form-data">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <label for="store_name">Store Name:</label>
+        <input type="text" id="store_name" name="store_name" required><br>
+
+        <label for="store_type">Store Type:</label>
+        <select id="store_type" name="store_type" required>
+            <option value="Electronics">Electronics</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Health & Beauty">Health & Beauty</option>
+            <option value="Home & Living">Home & Living</option>
+            <option value="Groceries">Groceries</option>
+            <option value="Toys & Games">Toys & Games</option>
+            <option value="Automotive">Automotive</option>
+            <option value="Sports & Outdoors">Sports & Outdoors</option>
+            <option value="Books & Stationery">Books & Stationery</option>
+            <option value="Handmade & Custom">Handmade & Custom</option>
+            <option value="Luxury Goods">Luxury Goods</option>
+        </select><br>
+
+        <label for="store_photo">Store Photo:</label>
+        <input type="file" id="store_photo" name="store_photo"><br>
+
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

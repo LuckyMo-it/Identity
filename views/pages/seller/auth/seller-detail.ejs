@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Login</title>
+</head>
+<body>
+    <h2>Complete all the details </h2>
+    <img src="/uploads/profile/<%=img%>" style="width: 200px; height: 180px;" alt="Store Photo">
+    <br>
+    Name: <%=name %>
+    <br>
+    Email: <%=email %>
+    <br>
+    phone: <%=phone %>
+    <br>
+    store_name: <%=store_name %>
+    <br>
+    <form action="/seller/update-detail" method="POST">
+        <label for="email">Give a store Discription:</label>
+        <input type="text" id="discription" name="discription" required><br>
+
+        <label for="password">store address:</label>
+        <input type="text" id="address" name="address" required><br>
+        
+        can enter any one of the following url or can fill all url's your choice
+        <br><br>
+
+        <label for="facebook">Facebook URL:</label>
+        <input type="url" name="facebook" id="facebook" value=""><br>
+
+        <label for="instagram">Instagram URL:</label>
+        <input type="url" name="instagram" id="instagram" value=""><br>
+
+        <label for="twitter">Twitter URL:</label>
+        <input type="url" name="twitter" id="twitter" value=""><br>
+
+        <label for="linkedin">LinkedIn URL:</label>
+        <input type="url" name="linkedin" id="linkedin" value=""><br>
+
+        <label for="other">Other Social Link:</label>
+        <input type="url" name="other" id="other" value=""><br>
+
+        <button type="submit">Login</button>
+    </form>
+
+    
+</body>
+</html>
