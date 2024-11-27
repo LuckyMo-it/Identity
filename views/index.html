@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Navbar</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Custom grey background */
+    .navbar-grey {
+      background-color: #f7f7f7; /* Light grey */
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-grey navbar-expand-lg">
+      <div class="container-fluid d-flex align-items-center">
+        <!-- Logo on the left -->
+        <a class="navbar-brand" href="#">CapSmall</a>
+
+        <!-- Search bar in the center -->
+        <form class="d-flex mx-auto w-50" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+
+        <!-- Right-aligned items -->
+        <div class="d-flex ms-auto align-items-center">
+          <!-- Login Dropdown -->
+          <div class="dropdown me-2">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-user fa-xs"></i> Login
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">New Customer</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-regular fa-id-card"></i> Profile</a></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-box-open"></i> Orders</a></li>
+            </ul>
+          </div>
+
+          <!-- Cart Button -->
+          <button type="button" class="btn btn-outline-secondary me-2">
+            <i class="fa-solid fa-cart-shopping"></i> Cart
+          </button>
+
+          <!-- Become A Seller Button -->
+          <button type="button" class="btn btn-outline-secondary">
+            <i class="fa-solid fa-shop"></i> Become A Seller
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid p-2 d-flex my-2">
+      <div class="card" style="width:400px">
+        <img class="card-img-top" src="../public/img/wallpapersden.com_dabi-minimal-anime-art_1920x1080.jpg" alt="Card image">
+        <div class="card-body">
+          <div class="dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+              Fashion
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Men</a></li>
+              <li><a class="dropdown-item" href="#">Women</a></li>
+              <li><a class="dropdown-item" href="#">Kids</a></li>
+              <li><a class="dropdown-item" href="#">Wearable</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="width:400px">
+        <img class="card-img-top" src="../public/img/wallpapersden.com_dabi-minimal-anime-art_1920x1080.jpg" alt="Card image">
+        <div class="card-body">
+          <div class="dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+              Fashion
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Men</a></li>
+              <li><a class="dropdown-item" href="#">Women</a></li>
+              <li><a class="dropdown-item" href="#">Kids</a></li>
+              <li><a class="dropdown-item" href="#">Wearable</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="width:400px">
+        <img class="card-img-top" src="../public/img/wallpapersden.com_dabi-minimal-anime-art_1920x1080.jpg" alt="Card image">
+        <div class="card-body">
+          <div class="dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+              Fashion
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Men</a></li>
+              <li><a class="dropdown-item" href="#">Women</a></li>
+              <li><a class="dropdown-item" href="#">Kids</a></li>
+              <li><a class="dropdown-item" href="#">Wearable</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="width:400px">
+        <img class="card-img-top" src="../public/img/wallpapersden.com_dabi-minimal-anime-art_1920x1080.jpg" alt="Card image">
+        <div class="card-body">
+          <div class="dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+              Fashion
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Men</a></li>
+              <li><a class="dropdown-item" href="#">Women</a></li>
+              <li><a class="dropdown-item" href="#">Kids</a></li>
+              <li><a class="dropdown-item" href="#">Wearable</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="carouselExampleDark" class="carousel carousel-dark slide mt-4 ">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <img src="../public/img/wallpapersden.com_reebok-logo-sport_2655x1418.jpg" class="d-block w-100 " alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Where Dream Flies</h5>
+            <p>Connect your business with our platform to skyrocket your sales.</p>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="../public/img/wallpapersden.com_reebok-logo-sport_2655x1418.jpg" class="d-block w-100 " alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Where Dream Flies</h5>
+            <p>Connect your business with our platform to skyrocket your sales.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="../public/img/wallpapersden.com_reebok-logo-sport_2655x1418.jpg" class="d-block w-100 " alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Where Dream Flies</h5>
+            <p>Connect your business with our platform to skyrocket your sales.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" aria-label="Previous Slide">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous Slide</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next" aria-label="Next Slide">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next Slide</span>
+      </button>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-7">
+          <div class="container-fluid">
+            <h2>Popular items</h2>
+            <div class="card-deck d-flex">
+              <!-- Add items here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+  </div>
+</body>
+</html>
